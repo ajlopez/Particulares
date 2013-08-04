@@ -29,10 +29,3 @@ assert.equal(particle3.y, 20);
 assert.equal(particle3.dx, 1);
 assert.equal(particle3.dy, -1);
 
-// move particle
-
-particle3.move();
-assert.equal(particle3.x, 11);
-assert.equal(particle3.y, 19);
-assert.equal(particle3.dx, 1);
-assert.equal(particle3.dy, -1);
