@@ -27,15 +27,16 @@ assert.equal(particle1.x, 0);
 assert.equal(particle1.y, 2);
 assert.equal(particle1.dx, 0);
 assert.equal(particle1.dy, 2);
-    
+
 // particles with diagonal spring
 
 var particle1 = p.createParticle(0, 0);
 var particle2 = p.createParticle(3, 4);
 
-particle1.spring(particle2, 6, 1);
+particle1.spring(particle2, 4, 1);
 
 particle1.move();
+
 assert.notEqual(particle1.x, 0);
 assert.notEqual(particle1.y, 0);
 assert.notEqual(particle1.dx, 0);
@@ -48,4 +49,27 @@ assert.notEqual(particle2.dy, 0);
 assert.ok(particle1.dx > 0);
 assert.ok(particle1.dy > 0);
 assert.ok(particle2.dx < 0);
+assert.ok(particle2.dy < 0);
+
+// particles with diagonal spring 2
+
+var particle1 = p.createParticle(4, 0);
+var particle2 = p.createParticle(1, 4);
+
+particle1.spring(particle2, 4, 1);
+
+particle1.move();
+
+assert.notEqual(particle1.x, 0);
+assert.notEqual(particle1.y, 0);
+assert.notEqual(particle1.dx, 0);
+assert.notEqual(particle1.dy, 0);
+
+assert.notEqual(particle2.x, 0);
+assert.notEqual(particle2.y, 0);
+assert.notEqual(particle2.dx, 0);
+assert.notEqual(particle2.dy, 0);
+assert.ok(particle1.dx < 0);
+assert.ok(particle1.dy > 0);
+assert.ok(particle2.dx > 0);
 assert.ok(particle2.dy < 0);
