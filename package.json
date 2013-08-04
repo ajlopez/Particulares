@@ -1,0 +1,16 @@
+{ "name": "particulares"
+, "description": "Particle system, for JavaScript, browser and node.js"
+, "keywords": [ "particle", "system", "browser" ]
+, "version": "0.0.1"
+, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
+, "repository": { "type": "git", "url": "git://github.com/ajlopez/Particulares.git" }
+, "main": "./lib/particulares.js"
+, "engines": { "node": ">= 0.6.0 && < 0.11.0" }
+, "scripts": {
+    "test": "node ./test.js"
+  }
+, "dependencies": {
+  }
+, "devDependencies": {
+  }
+}
