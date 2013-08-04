@@ -16,7 +16,7 @@ var width = canvas.width;
 var height = canvas.height;
 
 var particles = [];
-var nparticles = 8;
+var nparticles = 100;
 
 for (var k = 0; k < nparticles; k++)
 {
@@ -24,11 +24,9 @@ for (var k = 0; k < nparticles; k++)
     particles.push(particle);
 }
 
-for (var k = 0; k < nparticles; k++) {
+for (var k = 0; k < nparticles; k += 2) {
     var particle = particles[k];
-    
-    for (var j = k + 1; j < nparticles; j++)
-        particle.spring(particles[j], width * 2 / 3, 0.1);
+    particle.spring(particles[k + 1], 100, 0.01);
 }
 
 drawScene();
@@ -56,13 +54,23 @@ function drawScene()
     
     context.closePath();
     context.fill();
+    
+    for (var k = 0; k < nparticles; k += 2) {
+        context.beginPath();
+        var particle1 = particles[k];
+        var particle2 = particles[k + 1];
+        context.moveTo(particle1.x, particle1.y);
+        context.lineTo(particle2.x, particle2.y);
+        context.stroke();
+    }    
 }
 
 function doMove()
 {
+    var forces = [ { fx: 0, fy: 0.5 } ];
     var options = { box: { left: 0, top: 0, right: width, bottom: height } };
     for (var k = 0; k < nparticles; k++)
-        particles[k].move(options);
+        particles[k].move(forces, options);
 }
 
 
