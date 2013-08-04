@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Particles with Springs</title>
+<script src='../lib/particulares.js'></script>
+</head>
+<body>
+<h1>Particles with Springs</h1>
+<canvas id="particles" width="400" height="400">
+</canvas>
+
+<script>
+
+var canvas = document.getElementById("particles");
+var context = canvas.getContext('2d');
+var width = canvas.width;
+var height = canvas.height;
+
+var particles = [];
+var nparticles = 8;
+
+for (var k = 0; k < nparticles; k++)
+{
+    var particle = particulares.createParticle(Math.random()*width, Math.random()*height, Math.random()*10 - 5, Math.random()*10 - 5);
+    particles.push(particle);
+}
+
+for (var k = 0; k < nparticles; k++) {
+    var particle = particles[k];
+    
+    for (var j = k + 1; j < nparticles; j++)
+        particle.spring(particles[j], width * 2 / 3, 0.1);
+}
+
+drawScene();
+
+doStep();
+
+function doStep()
+{
+    doMove();
+    drawScene();
+    setTimeout(doStep, 50);
+}
+
+function drawScene()
+{
+    context.clearRect(0, 0, width, height);
+    context.beginPath();
+    
+    for (var k = 0; k < nparticles; k++) {
+        var particle = particles[k];
+        var x = particle.x % width;
+        var y = particle.y % height;
+        context.arc(x, y, 3, 0, Math.PI * 2, true);
+    }
+    
+    context.closePath();
+    context.fill();
+}
+
+function doMove()
+{
+    var options = { box: { left: 0, top: 0, right: width, bottom: height } };
+    for (var k = 0; k < nparticles; k++)
+        particles[k].move(options);
+}
+
+
+</script>
+
+</body>
+</html>

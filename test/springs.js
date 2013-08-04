@@ -45,3 +45,7 @@ assert.notEqual(particle2.x, 0);
 assert.notEqual(particle2.y, 0);
 assert.notEqual(particle2.dx, 0);
 assert.notEqual(particle2.dy, 0);
+assert.ok(particle1.dx > 0);
+assert.ok(particle1.dy > 0);
+assert.ok(particle2.dx < 0);
+assert.ok(particle2.dy < 0);
