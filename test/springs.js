@@ -1,75 +1,75 @@
 
-var p = require('..'),
-    assert = require('assert');
+var p = require('..');
     
-// particles with horizontal spring
+exports['particles with horizontal spring'] = function (test) {
+    var particle1 = p.createParticle(0, 0);
+    var particle2 = p.createParticle(10, 0);
 
-var particle1 = p.createParticle(0, 0);
-var particle2 = p.createParticle(10, 0);
+    particle1.spring(particle2, 8, 1);
 
-particle1.spring(particle2, 8, 1);
-
-particle1.move();
-assert.equal(particle1.x, 2);
-assert.equal(particle1.y, 0);
-assert.equal(particle1.dx, 2);
-assert.equal(particle1.dy, 0);
+    particle1.move();
+    test.equal(particle1.x, 2);
+    test.equal(particle1.y, 0);
+    test.equal(particle1.dx, 2);
+    test.equal(particle1.dy, 0);
+}
     
-// particles with vertical spring
+exports['particles with vertical spring'] = function (test) {
+    var particle1 = p.createParticle(0, 0);
+    var particle2 = p.createParticle(0, 10);
 
-var particle1 = p.createParticle(0, 0);
-var particle2 = p.createParticle(0, 10);
+    particle1.spring(particle2, 8, 1);
 
-particle1.spring(particle2, 8, 1);
+    particle1.move();
+    test.equal(particle1.x, 0);
+    test.equal(particle1.y, 2);
+    test.equal(particle1.dx, 0);
+    test.equal(particle1.dy, 2);
+}
 
-particle1.move();
-assert.equal(particle1.x, 0);
-assert.equal(particle1.y, 2);
-assert.equal(particle1.dx, 0);
-assert.equal(particle1.dy, 2);
+exports['particles with diagonal spring'] = function (test) {
+    var particle1 = p.createParticle(0, 0);
+    var particle2 = p.createParticle(3, 4);
 
-// particles with diagonal spring
+    particle1.spring(particle2, 4, 1);
 
-var particle1 = p.createParticle(0, 0);
-var particle2 = p.createParticle(3, 4);
+    particle1.move();
 
-particle1.spring(particle2, 4, 1);
+    test.notEqual(particle1.x, 0);
+    test.notEqual(particle1.y, 0);
+    test.notEqual(particle1.dx, 0);
+    test.notEqual(particle1.dy, 0);
 
-particle1.move();
+    test.notEqual(particle2.x, 0);
+    test.notEqual(particle2.y, 0);
+    test.notEqual(particle2.dx, 0);
+    test.notEqual(particle2.dy, 0);
+    test.ok(particle1.dx > 0);
+    test.ok(particle1.dy > 0);
+    test.ok(particle2.dx < 0);
+    test.ok(particle2.dy < 0);
+}
 
-assert.notEqual(particle1.x, 0);
-assert.notEqual(particle1.y, 0);
-assert.notEqual(particle1.dx, 0);
-assert.notEqual(particle1.dy, 0);
+exports['particles with diagonal spring 2'] = function (test) {
+    var particle1 = p.createParticle(4, 0);
+    var particle2 = p.createParticle(1, 4);
 
-assert.notEqual(particle2.x, 0);
-assert.notEqual(particle2.y, 0);
-assert.notEqual(particle2.dx, 0);
-assert.notEqual(particle2.dy, 0);
-assert.ok(particle1.dx > 0);
-assert.ok(particle1.dy > 0);
-assert.ok(particle2.dx < 0);
-assert.ok(particle2.dy < 0);
+    particle1.spring(particle2, 4, 1);
 
-// particles with diagonal spring 2
+    particle1.move();
 
-var particle1 = p.createParticle(4, 0);
-var particle2 = p.createParticle(1, 4);
+    test.notEqual(particle1.x, 0);
+    test.notEqual(particle1.y, 0);
+    test.notEqual(particle1.dx, 0);
+    test.notEqual(particle1.dy, 0);
 
-particle1.spring(particle2, 4, 1);
+    test.notEqual(particle2.x, 0);
+    test.notEqual(particle2.y, 0);
+    test.notEqual(particle2.dx, 0);
+    test.notEqual(particle2.dy, 0);
+    test.ok(particle1.dx < 0);
+    test.ok(particle1.dy > 0);
+    test.ok(particle2.dx > 0);
+    test.ok(particle2.dy < 0);
+}
 
-particle1.move();
-
-assert.notEqual(particle1.x, 0);
-assert.notEqual(particle1.y, 0);
-assert.notEqual(particle1.dx, 0);
-assert.notEqual(particle1.dy, 0);
-
-assert.notEqual(particle2.x, 0);
-assert.notEqual(particle2.y, 0);
-assert.notEqual(particle2.dx, 0);
-assert.notEqual(particle2.dy, 0);
-assert.ok(particle1.dx < 0);
-assert.ok(particle1.dy > 0);
-assert.ok(particle2.dx > 0);
-assert.ok(particle2.dy < 0);

@@ -1,13 +1,12 @@
 
-var p = require('..'),
-    assert = require('assert');
+var p = require('..');
     
-// move particle applying force
+exports['move particle applying force'] = function (test) {
+    var particle1 = p.createParticle(10, 20);
 
-var particle1 = p.createParticle(10, 20);
-
-particle1.move([{ fx: 1, fy: 2 }]);
-assert.equal(particle1.x, 11);
-assert.equal(particle1.y, 22);
-assert.equal(particle1.dx, 1);
-assert.equal(particle1.dy, 2);
+    particle1.move([{ fx: 1, fy: 2 }]);
+    test.equal(particle1.x, 11);
+    test.equal(particle1.y, 22);
+    test.equal(particle1.dx, 1);
+    test.equal(particle1.dy, 2);
+}
