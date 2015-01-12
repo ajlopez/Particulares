@@ -38,17 +38,16 @@ function doStep()
 function drawScene()
 {
     context.clearRect(0, 0, width, height);
-    context.beginPath();
     
     for (var k = 0; k < nparticles; k++) {
+        context.beginPath();
         var particle = particles[k];
         var x = particle.x % width;
         var y = particle.y % height;
         context.arc(x, y, 3, 0, Math.PI * 2, true);
-    }
-    
-    context.closePath();
-    context.fill();
+        context.closePath();
+        context.fill();
+    }    
 }
 
 function doMove()

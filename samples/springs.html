@@ -43,24 +43,24 @@ function doStep()
 function drawScene()
 {
     context.clearRect(0, 0, width, height);
-    context.beginPath();
     
     for (var k = 0; k < nparticles; k++) {
         var particle = particles[k];
         var x = particle.x % width;
         var y = particle.y % height;
+        context.beginPath();
         context.arc(x, y, 3, 0, Math.PI * 2, true);
+        context.closePath();
+        context.fill();
     }
-    
-    context.closePath();
-    context.fill();
-    
+        
     for (var k = 0; k < nparticles; k += 2) {
         context.beginPath();
         var particle1 = particles[k];
         var particle2 = particles[k + 1];
         context.moveTo(particle1.x, particle1.y);
         context.lineTo(particle2.x, particle2.y);
+        context.closePath();
         context.stroke();
     }    
 }
